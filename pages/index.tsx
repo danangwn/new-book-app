@@ -4,6 +4,7 @@ import 'bulma/css/bulma.min.css';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import { SetStateAction, useState } from 'react';
 
 export async function getServerSideProps(ctx: { key: string | undefined }){
   const key = ctx.key ? ctx.key : 'Test';
@@ -16,9 +17,20 @@ export async function getServerSideProps(ctx: { key: string | undefined }){
 }
 
 export default function Home(props: { data: any[] }) {
+  let datas = props.data;
+  const [searchTerm, setSearchTerm,] = useState("");
+  const [value , setValue] = useState(props.data)
+  
   const router = useRouter()
   const refreshData = () => {
     router.replace(router.asPath)
+  };
+
+  async function handleChange(event: { target: { value: SetStateAction<string>; }; }) {
+    setSearchTerm(event.target.value);
+    const key: string = event.target.value.toString();
+    const books = await listing(key);
+    setValue(books);
   };
 
   async function addWishlist(id: any, e: { preventDefault: () => void; }) {
@@ -41,6 +53,8 @@ export default function Home(props: { data: any[] }) {
     alert("Wishlist created");
   }
 
+  
+  console.log('datas2', datas)
   return (
     <>
     <div style={{paddingBottom: 50}}>
@@ -53,12 +67,16 @@ export default function Home(props: { data: any[] }) {
           <Link className="navbar-item" href="/wishlist">
             Wishlist
           </Link>
+
+          <div className='control'>
+            <input className="input is-rounded" type="text" placeholder="Search" value={searchTerm} onChange={handleChange}></input>
+          </div>
       </div>
     </nav>
     </div>
 
     <div>
-      {props.data.map(data => (
+      {value.map(data => (
         <div key={data.bookId}>
         <div className="section has-background-light section-padding: 0">
           <div className="columns is-centered">
