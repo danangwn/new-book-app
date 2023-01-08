@@ -1,0 +1,4 @@
+# disini saya ignore folder node_modules dan log, karena tidak perlu ikut ter-copy nanti
+node_modules
+npm-debug.log
+.next
