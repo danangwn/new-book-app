@@ -1,18 +1,7 @@
-import type { NextApiRequest, NextApiResponse } from 'next'
 import Axios from 'axios';
-import { PrismaClient } from "@prisma/client";
 
 type Data = {
   name: string
-}
-
-const prisma = new PrismaClient();
-
-export default function handler(
-  req: NextApiRequest,
-  res: NextApiResponse<Data>
-) {
-  res.status(200).json({ name: 'John Doe' })
 }
 
 export async function listing(key?: string){
