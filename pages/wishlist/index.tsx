@@ -42,15 +42,11 @@ export default function Wishlist(props: { data: any[] }) {
     return (
         <>
         <div style={{paddingBottom: 50}}>
-        <nav className="navbar is-fixed-top is-spaced" role="navigation" aria-label="main navigation">
+        <nav className="navbar is-fixed-top is-spaced is-danger" role="navigation" aria-label="main navigation">
           <div className="navbar-brand">
-            <Link className="navbar-item" href="/">
-                Home
-              </Link>
-    
-              <Link className="navbar-item" href="/wishlist">
-                Wishlist
-              </Link>
+            <Link className="navbar-item" href='/'>
+              <strong>Home</strong>
+            </Link>
           </div>
         </nav>
         </div>
@@ -76,7 +72,7 @@ export default function Wishlist(props: { data: any[] }) {
                             <h4 className="subtitle">Authors: {data.author}</h4>
                             <h6 className="subtitle is-7">Rating: {data.reting}</h6>
                             <div className='button'  style={{paddingLeft: 0, paddingRight: 0}}>
-                                <button className='button-is-medium button is-danger' type='submit' onClick={(e) => removeWishlist(data.id, e)}>Remove</button>
+                                <button className='button-is-medium button is-danger' type='submit' onClick={(e) => removeWishlist(data.id, e)}><strong>Remove</strong></button>
                             </div>
                             </p>
                         </div>

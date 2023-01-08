@@ -53,23 +53,23 @@ export default function Home(props: { data: any[] }) {
     alert("Wishlist created");
   }
 
-  
-  console.log('datas2', datas)
   return (
     <>
     <div style={{paddingBottom: 50}}>
-    <nav className="navbar is-fixed-top is-spaced" role="navigation" aria-label="main navigation">
+    <nav className="navbar is-fixed-top is-spaced is-danger" role="navigation" aria-label="main navigation">
       <div className="navbar-brand">
-        <Link className="navbar-item" href='/'>
-            Home
+          <Link className="navbar-item" href='/'>
+            <strong>Home</strong>
           </Link>
 
           <Link className="navbar-item" href="/wishlist">
-            Wishlist
+            <strong>Wishlist</strong>
           </Link>
 
-          <div className='control'>
-            <input className="input is-rounded" type="text" placeholder="Search" value={searchTerm} onChange={handleChange}></input>
+          <div style={{paddingTop: 7, paddingLeft: 35}}>
+            <div className='control'>
+              <input className="input is-rounded" type="text" placeholder="Search" value={searchTerm} onChange={handleChange}></input>
+            </div>
           </div>
       </div>
     </nav>
@@ -96,7 +96,7 @@ export default function Home(props: { data: any[] }) {
                       <h4 className="subtitle">Authors: {data.author}</h4>
                       <h6 className="subtitle is-7">Rating: {data.reting}</h6>
                       <div className='button'  style={{paddingLeft: 0, paddingRight: 0}}>
-                        <button className='button-is-medium button is-danger' type='submit' onClick={(e) => addWishlist(data.bookId, e)}>Add to Wishlist</button>
+                        <button className='button-is-medium button is-danger' type='submit' onClick={(e) => addWishlist(data.bookId, e)}><strong>Add to Wishlist</strong></button>
                       </div>
                     </p>
                   </div>
